@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block body %}
+  {% for note in notes %}
+  <p>{{note.body}} -- {{note.mtime}}
+  <a href=/compose?key={{note.key()}}>Edit</a> 
+  </p>
+  {% end %}
+{% end %}

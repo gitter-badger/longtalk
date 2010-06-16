@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <form action="{{ request.path }}" method="post" class="compose">
+    <div style="margin-bottom:5px"><textarea name="body" rows="30" cols="40"
+            class = "markdown">{{ escape(note.body) if note else "" }}</textarea></div>
+    <div>
+      <input type="submit" value="{{ _("Save changes") if note else _("Publish post") }}" class="submit"/>
+    </div>
+    {% if note %}
+      <input type="hidden" name="key" value="{{ str(note.key()) }}"/>
+    {% end %}
+    {{ xsrf_form_html() }}
+  </form>
+{% end %}
