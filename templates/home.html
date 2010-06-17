@@ -1,9 +1,28 @@
 {% extends "base.html" %}
 
 {% block body %}
+
+ <form action="/compose" method="post" class="compose">
+     <div style="margin-bottom:5px">
+         <textarea name="body" rows="4" cols="40">Write down your ideas...</textarea></div>
+    <div>
+        <input type="submit" value="{{_("Append")}}" class="submit"/>
+    </div>
+    
+    {% if notes %}
+      <input type="hidden" name="key" value="{{str(notes[0].key())}}"/>
+      <input type="hidden" name="append" value="true"/>
+    {% end %}
+    
+    {{ xsrf_form_html() }}
+  </form>
+
   {% for note in notes %}
-  <p>{{note.body}} -- {{note.mtime}}
+  <p><pre>{{note.body}}</pre> -- {{note.mtime}}
   <a href=/compose?key={{note.key()}}>Edit</a> 
+  <a href=/delete?key={{note.key()}}> X </a> 
   </p>
+  <br><br>
   {% end %}
+
 {% end %}

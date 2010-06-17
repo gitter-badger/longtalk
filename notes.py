@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import functools
-import markdown
 import os.path
 import re
 import tornado.web
@@ -54,6 +53,15 @@ class HomeHandler(BaseHandler):
         notes = db.Query(Note).order('-mtime').fetch(limit = 10)
         self.render("home.html", notes = notes)
 
+class DeleteHandler(BaseHandler):
+    @login
+    def get(self):
+        key = self.get_argument("key", None)
+        note = Note.get(key) if key else None
+        if note:
+            note.delete()
+        self.redirect("/")
+
 class ComposeHandler(BaseHandler):
     @login
     def get(self):
@@ -65,9 +73,13 @@ class ComposeHandler(BaseHandler):
     def post(self):
         key = self.get_argument("key", None)
         body = self.get_argument("body")
+        append = self.get_argument("append", None)
         if key:
             note = Note.get(key)
-            note.body = body
+            if append:
+                note.body = body + '\n\n' + note.body
+            else:
+                note.body = body
         else:
             note = Note(
                 body = body,
@@ -83,6 +95,7 @@ settings = {
 application = tornado.wsgi.WSGIApplication([
     (r"/", HomeHandler),
     (r"/compose", ComposeHandler),
+    (r"/delete", DeleteHandler),
 ], **settings)
 
 
