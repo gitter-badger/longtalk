@@ -50,18 +50,9 @@ h1 {
   font-size: 20pt;
 }
 
-pre,
-code {
-  font-family: monospace;
-  color: #060;
+pre,code {
 }
 
-pre {
-  margin-left: 1em;
-  padding-left: 1em;
-  border-left: 1px solid silver;
-  line-height: 14pt;
-}
 
 a,
 a code {
