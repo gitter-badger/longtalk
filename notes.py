@@ -16,6 +16,7 @@ class Msg(db.Model):
 
 #class Journal:
 class Note(db.Model):
+    title = db.TextProperty()
     body = db.TextProperty(required = True)
     mtime = db.DateTimeProperty(auto_now = True)
     ctime = db.DateTimeProperty(auto_now_add = True)
@@ -53,6 +54,17 @@ class HomeHandler(BaseHandler):
         notes = db.Query(Note).order('-mtime').fetch(limit = 10)
         self.render("home.html", notes = notes)
 
+class NoteHandler(BaseHandler):
+    @login
+    def get(self):
+        key = self.get_argument("key", None)
+        if not key:
+            self.redirect("/")
+
+        note = Note.get(key)
+        self.render("note.html", note = note)
+
+
 class DeleteHandler(BaseHandler):
     @login
     def get(self):
@@ -73,19 +85,25 @@ class ComposeHandler(BaseHandler):
     def post(self):
         key = self.get_argument("key", None)
         body = self.get_argument("body")
+        title = self.get_argument("title")
         append = self.get_argument("append", None)
         if key:
             note = Note.get(key)
             if append:
+                # Append mode
                 note.body = body + '\n\n' + note.body
             else:
+                # Edit mode
                 note.body = body
+                note.title = title
         else:
+            # Create mode
             note = Note(
+                title = title,
                 body = body,
             )
         note.put()
-        self.redirect("/")
+        self.redirect('/note?key=%s' % note.key())
 
 settings = {
     "blog_title": u"Personal Notes and Secure Messaging",
@@ -96,6 +114,7 @@ application = tornado.wsgi.WSGIApplication([
     (r"/", HomeHandler),
     (r"/compose", ComposeHandler),
     (r"/delete", DeleteHandler),
+    (r"/note", NoteHandler),
 ], **settings)
 
 

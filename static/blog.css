@@ -25,7 +25,18 @@ body,
 input,
 textarea {
   font-family: Georgia, serif;
-  font-size: 12pt;
+}
+
+.note {
+  font-family: Georgia, serif;
+  max-width: 800px;
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;   
+  line-height: 24px;
+  margin-top:10px;
 }
 
 table {
@@ -50,22 +61,21 @@ h1 {
   font-size: 20pt;
 }
 
-pre,code {
+
+.title{
+  color: blue; /*#00ffff;*/
 }
 
-
-a,
-a code {
-  color: #00c;
+.ops{
+  color: #0082ff;
 }
 
 #body {
-  max-width: 800px;
   margin: auto;
 }
 
 #header {
-  background-color: gray;
+  background-color: gray; /*#7adde1;*/
   padding: 5px;
   padding-left: 10px;
   padding-right: 10px;

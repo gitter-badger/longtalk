@@ -2,10 +2,14 @@
 
 {% block body %}
   <form action="{{ request.path }}" method="post" class="compose">
-    <div style="margin-bottom:5px"><textarea name="body" rows="30" cols="40"
-            class = "markdown">{{ escape(note.body) if note else "" }}</textarea></div>
+    <input type="text" name="title" value="{{ str(note.title) if note else _('No Title') }}"/>
+ 
+    <div style="margin-bottom:5px">
+        <textarea name="body" rows="8" cols="40">{{ escape(note.body) if note else "" }}</textarea>
+    </div>
+
     <div>
-      <input type="submit" value="{{ _("Save changes") if note else _("Publish post") }}" class="submit"/>
+      <input type="submit" value="{{ _("Save") if note else _("Create") }}" class="submit"/>
     </div>
     {% if note %}
       <input type="hidden" name="key" value="{{ str(note.key()) }}"/>
