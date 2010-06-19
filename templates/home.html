@@ -5,7 +5,12 @@
   {% for note in notes %}
   <p>
   <a href=/note?key={{note.key()}} class='title'>{{note.title}}</a> 
-  <pre class='note'>{{note.body}}</pre> -- {{note.mtime}}
+  <pre class='note'>{{note.body[:200]}}{{'...' if len(note.body) > 200 else ''}}</pre>
+  
+  <span class='timestamp'>
+    {{note.mtime.strftime(date_format)}}
+  </span>
+
   <a href=/compose?key={{note.key()}} class='ops'>Edit</a> 
   <a href=/delete?key={{note.key()}} class='ops'> X </a> 
   </p>

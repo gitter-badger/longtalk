@@ -61,6 +61,12 @@ h1 {
   font-size: 20pt;
 }
 
+.timestamp {
+  font-size: 12pt;
+  color: #7866a2;
+}
+
+
 
 .title{
   color: blue; /*#00ffff;*/
@@ -75,7 +81,7 @@ h1 {
 }
 
 #header {
-  background-color: gray; /*#7adde1;*/
+  background-color: #7adde1;
   padding: 5px;
   padding-left: 10px;
   padding-right: 10px;

@@ -21,7 +21,12 @@
     {{ xsrf_form_html() }}
   </form>
 
-  <pre class='note'>{{note.body}}</pre> -- {{note.mtime}}
+  <pre class='note'>{{note.body}}</pre>
+
+  <span class='timestamp'>
+    {{note.mtime.strftime(date_format)}}
+  </span>
+
   <a href=/compose?key={{note.key()}} class='ops'>Edit</a> 
   <a href=/delete?key={{note.key()}} class='ops'> X </a> 
   </p>

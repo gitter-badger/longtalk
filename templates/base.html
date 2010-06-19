@@ -8,14 +8,17 @@
     {% block head %}{% end %}
   </head>
   <body>
+
+  {% set date_format = "%Y-%m-%d %H:%M:%S" %}
+
     <div id="body">
       <div id="header">
         <div style="float:right">
           {% if not current_user %}
             {{ _('<a href="%(url)s">Sign in</a> to compose/edit') % {"url": escape(users.create_login_url(request.uri))} }}
           {% else %}
-          {{current_user}}
             <a href="/compose">{{ _("New Note") }}</a> -
+          {{current_user}}
             <a href="{{ escape(users.create_logout_url(request.uri)) }}">{{ _("Sign out") }}</a>
           {% end %}
         </div>
