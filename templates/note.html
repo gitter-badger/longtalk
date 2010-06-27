@@ -1,4 +1,5 @@
-{% extends "base.html" %}
+
+{% extends "base.html"%}
 
 {% block body %}
 
@@ -21,7 +22,14 @@
     {{ xsrf_form_html() }}
   </form>
 
-  <pre class='note'>{{note.body}}</pre>
+  {% for key in note.fragments %}
+    <pre class='fragment'>
+        {{note.fragments_cache[key].body}}
+    </pre>
+    <span class='timestamp_small'>
+        {{note.fragments_cache[key].mtime.strftime(date_format)}}
+    </span>
+  {% end %}
 
   <span class='timestamp'>
     {{note.mtime.strftime(date_format)}}

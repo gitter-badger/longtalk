@@ -14,6 +14,35 @@
  * under the License.
  */
 
+.timestamp {
+  font-size: 12pt;
+  color: #7866a2;
+}
+
+.timestamp_small {
+  font-size: 8pt;
+  color: #7866a2;
+}
+.title{
+  color: blue; /*#00ffff;*/
+}
+
+.ops{
+  color: #0082ff;
+}
+
+.fragment {
+  font-family: Georgia, serif;
+  max-width: 800px;
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;   
+  line-height: 24px;
+  margin-top:10px;
+}
+
 body {
   background: white;
   color: black;
@@ -25,18 +54,6 @@ body,
 input,
 textarea {
   font-family: Georgia, serif;
-}
-
-.note {
-  font-family: Georgia, serif;
-  max-width: 800px;
-  white-space: pre-wrap;       /* css-3 */
-  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  word-wrap: break-word;   
-  line-height: 24px;
-  margin-top:10px;
 }
 
 table {
@@ -59,21 +76,6 @@ h4 {
 
 h1 {
   font-size: 20pt;
-}
-
-.timestamp {
-  font-size: 12pt;
-  color: #7866a2;
-}
-
-
-
-.title{
-  color: blue; /*#00ffff;*/
-}
-
-.ops{
-  color: #0082ff;
 }
 
 #body {

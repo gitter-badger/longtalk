@@ -5,7 +5,15 @@
   {% for note in notes %}
   <p>
   <a href=/note?key={{note.key()}} class='title'>{{note.title}}</a> 
-  <pre class='note'>{{note.body[:200]}}{{'...' if len(note.body) > 200 else ''}}</pre>
+
+  {% for key in note.fragments[:3] %}
+    <pre class='fragment'>
+        {{note.fragments_cache[key].body}}
+    </pre>
+    <span class='timestamp_small'>
+        {{note.fragments_cache[key].mtime.strftime(date_format)}}
+    </span>
+  {% end %}
   
   <span class='timestamp'>
     {{note.mtime.strftime(date_format)}}
