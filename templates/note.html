@@ -23,12 +23,11 @@
   </form>
 
   {% for key in note.fragments %}
-    <pre class='fragment'>
-        {{note.fragments_cache[key].body}}
-    </pre>
-    <span class='timestamp_small'>
-        {{note.fragments_cache[key].mtime.strftime(date_format)}}
-    </span>
+  {{frag = note.fragments_cache[key]}}
+    <p>
+    <span class='fragment'>{{frag.body}}</span>
+    <span class='timestamp_small'>{{note.fragments_cache[key].mtime.strftime(date_format)}}</span>
+    </p>
   {% end %}
 
   <span class='timestamp'>

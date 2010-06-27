@@ -78,7 +78,7 @@ class ComposeHandler(BaseHandler):
         # Create a new journal or append a fragment to journal
         # TODO: how to edit a journal
         key = self.get_argument("key", None)
-        body = self.get_argument("body")
+        body = self.get_argument("body").strip(' \n')
         title = self.get_argument("title")
 
         if key:

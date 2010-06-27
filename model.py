@@ -5,7 +5,7 @@ class Fragment(db.Model):
     user =  db.UserProperty(required=True)
     mtime = db.DateTimeProperty(auto_now = True)
     ctime = db.DateTimeProperty(auto_now_add = True)
-    body = db.StringProperty()
+    body = db.TextProperty()
 
 #class Journal:
 class Journal(db.Model):

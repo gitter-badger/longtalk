@@ -3,16 +3,14 @@
 {% block body %}
 
   {% for note in notes %}
-  <p>
   <a href=/note?key={{note.key()}} class='title'>{{note.title}}</a> 
 
-  {% for key in note.fragments[:3] %}
-    <pre class='fragment'>
-        {{note.fragments_cache[key].body}}
-    </pre>
-    <span class='timestamp_small'>
-        {{note.fragments_cache[key].mtime.strftime(date_format)}}
-    </span>
+  {% for key in note.fragments[:2] %}
+    {{frag = note.fragments_cache[key]}}
+    <p>
+    <span class='fragment'>{{frag.body[:100]}}{{'...' if len(frag.body) > 100 else ''}}</span>
+    <span class='timestamp_small'>{{note.fragments_cache[key].mtime.strftime(date_format)}}</span>
+    </p>
   {% end %}
   
   <span class='timestamp'>
@@ -21,7 +19,6 @@
 
   <a href=/compose?key={{note.key()}} class='ops'>Edit</a> 
   <a href=/delete?key={{note.key()}} class='ops'> X </a> 
-  </p>
   <br><br>
   {% end %}
 
