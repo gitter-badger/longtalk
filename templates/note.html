@@ -22,6 +22,8 @@
     {{ xsrf_form_html() }}
   </form>
 
+  <div class="notearea">
+
   {% for key in note.fragments %}
   {{frag = note.fragments_cache[key]}}
     <p>
@@ -29,6 +31,8 @@
     <span class='timestamp_small'>{{note.fragments_cache[key].mtime.strftime(date_format)}}</span>
     </p>
   {% end %}
+
+ </div>
 
   <span class='timestamp'>
     {{note.mtime.strftime(date_format)}}

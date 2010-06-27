@@ -2,6 +2,8 @@
 
 {% block body %}
 
+  <div class="notearea">
+
   {% for note in notes %}
   <a href=/note?key={{note.key()}} class='title'>{{note.title}}</a> 
 
@@ -21,5 +23,6 @@
   <a href=/delete?key={{note.key()}} class='ops'> X </a> 
   <br><br>
   {% end %}
+  </div>
 
 {% end %}
