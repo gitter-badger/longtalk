@@ -27,8 +27,7 @@
   {% for key in note.fragments %}
   {{frag = note.fragments_cache[key]}}
     <p>
-    <span class='fragment'>{{frag.body}}</span>
-    <span class='timestamp_small'>{{note.fragments_cache[key].mtime.strftime(date_format)}}</span>
+    <div class='fragment' style="display: inline"><span class='dblclick' id={{key}}>{{frag.body}}</span> <span class='timestamp_small'>{{note.fragments_cache[key].mtime.strftime(date_format)}}</span></div>
     </p>
   {% end %}
 
