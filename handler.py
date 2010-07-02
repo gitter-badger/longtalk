@@ -37,7 +37,12 @@ class BaseHandler(tornado.web.RequestHandler):
 def load_fragments(note, n = None):
     note.fragments_cache = {}
     for key in note.fragments[:n]:
-        note.fragments_cache[key] = Fragment.get(key)
+        frag = Fragment.get(key)
+        if frag:
+            note.fragments_cache[key] = Fragment.get(key)
+        else:
+            note.fragments.remove(key)
+    note.put()
 
 class HomeHandler(BaseHandler):
     @login
@@ -68,19 +73,18 @@ class DeleteHandler(BaseHandler):
 
 class SaveHandler(BaseHandler):
     @login
-    def get(self):
-        print self.request.POST
-        key = self.get_argument("key", None)
-        body = self.get_argument("body").strip(' \n')
+    def post(self):
+        #print self.request['POST']
+        key = self.get_argument("id", None)
+        body = self.get_argument("value", '').strip(' \n')
         frag = Fragment.get(key) if key else None
         if frag:
             if not body:
                 frag.delete()
-                return ''
             else:
                 frag.body = body
-                farg.put()
-                return body
+                frag.put()
+        self.render("save.html", value = body)
 
 class ComposeHandler(BaseHandler):
     @login
