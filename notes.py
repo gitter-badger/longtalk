@@ -16,6 +16,7 @@ application = tornado.wsgi.WSGIApplication([
     (r"/compose", ComposeHandler),
     (r"/delete", DeleteHandler),
     (r"/note", NoteHandler),
+    (r"/save", SaveHandler),
 ], **settings)
 
 def main():

@@ -66,6 +66,22 @@ class DeleteHandler(BaseHandler):
             # FIXME: delete all fragments here
         self.redirect("/")
 
+class SaveHandler(BaseHandler):
+    @login
+    def get(self):
+        print self.request.POST
+        key = self.get_argument("key", None)
+        body = self.get_argument("body").strip(' \n')
+        frag = Fragment.get(key) if key else None
+        if frag:
+            if not body:
+                frag.delete()
+                return ''
+            else:
+                frag.body = body
+                farg.put()
+                return body
+
 class ComposeHandler(BaseHandler):
     @login
     def get(self):

@@ -17,12 +17,12 @@
 
 $(function() {
 
-  $(".singleclick_editable").editable("http://www.appelsiini.net/projects/jeditable/php/echo.php", { 
+  $(".singleclick_editable").editable("/save", { 
       indicator : "<img src='img/indicator.gif'>",
       tooltip   : "Click to edit...",
       style  : "inherit"
   });
-  $(".doubleclick_editable").editable("http://www.appelsiini.net/projects/jeditable/php/echo.php", { 
+  $(".doubleclick_editable").editable("/save", { 
       indicator : "<img src='img/indicator.gif'>",
       tooltip   : "Doubleclick to edit...",
       type   : 'textarea',
