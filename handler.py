@@ -36,13 +36,16 @@ class BaseHandler(tornado.web.RequestHandler):
 
 def load_fragments(note, n = None):
     note.fragments_cache = {}
+    changed = False
     for key in note.fragments[:n]:
         frag = Fragment.get(key)
         if frag:
             note.fragments_cache[key] = Fragment.get(key)
         else:
             note.fragments.remove(key)
-    note.put()
+            changed = True
+    if changed:
+        note.put()
 
 class HomeHandler(BaseHandler):
     @login
