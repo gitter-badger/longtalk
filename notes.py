@@ -7,7 +7,7 @@ import wsgiref.handlers
 from handler import *
 
 settings = {
-    "blog_title": u"Personal Notes and Secure Messaging",
+    "blog_title": "Personal Notes and Secure Messaging",
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
     "xsrf_cookies": True,
 }
