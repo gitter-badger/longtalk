@@ -51,6 +51,9 @@ class BaseHandler(tornado.web.RequestHandler):
         self.check_permission(obj)
         return obj
 
+    def check_xsrf_cookie(self):
+        pass
+
 #############################
 
 def load_fragments(note, n = None):
